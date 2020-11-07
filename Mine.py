@@ -42,14 +42,7 @@ def mine(minerais):
                 time.sleep(0.5)
             
             gui.press('tab')
-            time.sleep(0.5)
+            time.sleep(0.7)
         status ='search'
     else:
         pass
-
-
-
-ore = 'carboneBrak'
-
-while True :
-    mine(ore)
