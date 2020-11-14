@@ -1,11 +1,20 @@
 # Bib
-import Mine
+import mine as min
+import capchat as cap
+import datas as dat
+import pyautogui as gui
+
 import time
 
 
-ore = 'carbone'
+ore = 'cuivre'
+d = dat.Datas()
 
 while True :
-    Mine.mine(ore)
-
-# Fontions
+    if cap.find('chatStart',0.8, screen=d.screenReduced)!=None:
+        cap.capChat()
+        time.sleep(2)
+        gui.press('esc')
+    
+    else :
+        min.mine(ore)

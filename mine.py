@@ -1,11 +1,11 @@
 import pyautogui as gui
 import time
+import datas as dat
 
 def find(name, imageConfidence, screen=(0,0,1920,1080)):
-    imageName = r'C:\Users\yannr\Info\PyBotWakfu\bankImage\{}.png'.format(name)
     
+    imageName = r'C:\Users\yannr\Info\PyBotWakfu\bankImage\{}.png'.format(name)
     imageLocation = gui.locateCenterOnScreen(imageName,confidence=imageConfidence,grayscale=True,region=screen)
-    #print(str(imgConfidence)+" : "+str(img_location))
     
     return imageLocation
 
@@ -30,19 +30,25 @@ def click_on(name,typeClic,imageConfidence,zoneCapture=(0,0,1920,1080)):
 
 def mine(minerais):
     
-    status = click_on(minerais,'right',0.8)
+    d = dat.Datas()
+
+    for i in d.screenSizes:
+        status = click_on(minerais,'right',0.8,d.screenSizes[str(i)])
+        if status == 'pickup':
+            break
+    
     time.sleep(0.75)
     
     if status == 'pickup':
         click_on('pioche','left',0.8)
-        time.sleep(2)
+        time.sleep(3)
         
         if find('recolte', 0.9) != None :
             while find('recolte', 0.9) != None :
                 time.sleep(0.5)
             
-            gui.press('tab')
-            time.sleep(0.7)
+            gui.press('w')
+            time.sleep(1)
         status ='search'
     else:
         pass
