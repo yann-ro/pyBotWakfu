@@ -1,11 +1,10 @@
 # Bib
-import mine as min
-import capchat as cap
+import bot.mine as min
+import bot.capchat as cap
 import datas as dat
 import pyautogui as gui
 
 import time
-
 
 ore = 'cuivre'
 d = dat.Datas()
