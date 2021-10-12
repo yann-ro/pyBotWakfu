@@ -1,7 +1,7 @@
 # Bib
 import bot.mine as min
 import bot.capchat as cap
-import datas as dat
+import bot.datas as dat
 import pyautogui as gui
 
 import time
