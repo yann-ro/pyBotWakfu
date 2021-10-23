@@ -1,28 +1,28 @@
 import pyautogui as gui
 import time
-import datas as dat
+from config import Config
 
-def find(name, imageConfidence, screen=(0,0,1920,1080)):
+def find(name, image_confidence, screen=(0,0,1920,1080)):
     
-    imageName = r'C:\Users\yannr\Info\PyBotWakfu\bankImage\{}.png'.format(name)
-    imageLocation = gui.locateCenterOnScreen(imageName,confidence=imageConfidence,grayscale=True,region=screen)
+    image_name = f'/image/{name}.png'
+    image_location = gui.locateCenterOnScreen(image_name,confidence=image_confidence,grayscale=True,region=screen)
     
-    return imageLocation
+    return image_location
 
 
-def click_on(name,typeClic,imageConfidence,zoneCapture=(0,0,1920,1080)):
+def click_on(name,type_clic,image_confidence,zone_capture=(0,0,1920,1080)):
     
     
     
-    location = find(name,imageConfidence,screen=zoneCapture)
+    location = find(name,image_confidence,screen=zone_capture)
     
-    #gui.click(location, button=typeClic)
+    #gui.click(location, button=type_clic)
     if (location == None):
         status = 'search'
         #print('not found')
         return status
     else:         
-        gui.click(location, button=typeClic)
+        gui.click(location, button=type_clic)
         status = 'pickup'
         #print('found')
         return status
@@ -30,10 +30,10 @@ def click_on(name,typeClic,imageConfidence,zoneCapture=(0,0,1920,1080)):
 
 def mine(minerais):
     
-    d = dat.Datas()
+    config = Config()
 
-    for i in d.screenSizes:
-        status = click_on(minerais,'right',0.8,d.screenSizes[str(i)])
+    for i in config.screen_sizes:
+        status = click_on(minerais,'right',0.8,config.screen_sizes[str(i)])
         if status == 'pickup':
             break
     
